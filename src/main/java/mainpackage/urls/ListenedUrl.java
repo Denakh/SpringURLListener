@@ -28,12 +28,12 @@ public class ListenedUrl {
     private String server;
     private String uri;
     private String keyword;
-    private String limitedTime;
+    private long limitedTime;
 
     public ListenedUrl() {
     }
 
-    public ListenedUrl(CustomUser user, Date date, String server, String uri, String keyword, String limitedTime) {
+    public ListenedUrl(CustomUser user, Date date, String server, String uri, String keyword, long limitedTime) {
         this.user = user;
         this.date = date;
         this.server = server;
@@ -98,11 +98,11 @@ public class ListenedUrl {
         this.keyword = keyword;
     }
 
-    public String getLimitedTime() {
+    public long getLimitedTime() {
         return limitedTime;
     }
 
-    public void setLimitedTime(String limitedTime) {
+    public void setLimitedTime(long limitedTime) {
         this.limitedTime = limitedTime;
     }
 }

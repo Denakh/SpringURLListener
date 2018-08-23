@@ -1,8 +1,11 @@
 package mainpackage.urls;
 
+import mainpackage.users.CustomUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ListenedUrlServiceImpl implements ListenedUrlService {
@@ -25,6 +28,18 @@ public class ListenedUrlServiceImpl implements ListenedUrlService {
     @Transactional
     public void deleteListenedUrl(Long id) {
         listenedUrlRepository.delete(id);
+    }
+
+    @Override
+    @Transactional
+    public List<ListenedUrl> getAllListenedUrls() {
+        return listenedUrlRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public ListenedUrl findLastEntry(CustomUser user) {
+        return listenedUrlRepository.findLastEntry(user);
     }
 
 }

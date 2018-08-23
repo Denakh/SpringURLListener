@@ -102,6 +102,7 @@ public class MyController {
         String server = allStrAr[0] + "//" + strAr[0];
         String uri = "/";
         if (strAr.length == 2) uri = uri+strAr[1];
+        /*
         ResponseEntity<String> responseEntity = this.get(server, uri);
 
         String str = responseEntity.toString();
@@ -126,7 +127,7 @@ public class MyController {
 */
         return "result";
     }
-
+/*
     private ResponseEntity<String> get(String server, String uri) {
         HttpHeaders headers = new HttpHeaders();
         //headers.add("Content-Type", "application/json");
@@ -136,7 +137,7 @@ public class MyController {
         ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.GET, requestEntity, String.class);
         return responseEntity;
     }
-
+*/
 
     private String errorEmptyStr(Model model) {
         String errorStr = "Error in URL. Try again";
