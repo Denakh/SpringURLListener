@@ -1,6 +1,10 @@
-package mainpackage;
+package mainpackage.users;
+
+import mainpackage.urls.ListenedUrl;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class CustomUser {
@@ -16,6 +20,9 @@ public class CustomUser {
 
     private String email;
     private String phone;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<ListenedUrl> listenedUrls = new ArrayList<>();
 
     public CustomUser(String login, String password, UserRole role) {
         this.login = login;
@@ -79,5 +86,13 @@ public class CustomUser {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<ListenedUrl> getListenedUrls() {
+        return listenedUrls;
+    }
+
+    public void setListenedUrls(List<ListenedUrl> listenedUrls) {
+        this.listenedUrls = listenedUrls;
     }
 }

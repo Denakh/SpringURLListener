@@ -18,6 +18,11 @@
             <input type="submit" value="Update" />
         </form>
 
+        <form action="/url_execute" method="POST">
+            Enter URL:<input type="text" name="inurl">
+            <input type="submit"/>
+        </form>
+
         <c:url value="/logout" var="logoutUrl" />
         <p>Click to logout: <a href="${logoutUrl}">LOGOUT</a></p>
     </div>

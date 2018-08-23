@@ -1,4 +1,4 @@
-package mainpackage;
+package mainpackage.users;
 
 public enum UserRole {
     ADMIN, USER;

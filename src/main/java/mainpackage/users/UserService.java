@@ -1,4 +1,6 @@
-package mainpackage;
+package mainpackage.users;
+
+import mainpackage.users.CustomUser;
 
 public interface UserService {
     CustomUser getUserByLogin(String login);
