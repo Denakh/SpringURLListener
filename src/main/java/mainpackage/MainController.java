@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-public class MyController {
+public class MainController {
     @Autowired
     private UserService userService;
     @Autowired
