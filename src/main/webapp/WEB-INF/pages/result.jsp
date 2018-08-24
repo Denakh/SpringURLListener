@@ -17,7 +17,7 @@
         <td><b> Response time, ms </b></td>
         <td><b> Response time excess </b></td>
         <td><b> Content length </b></td>
-        <td><b> Keyword inclusion </b></td>
+        <td><b> Keyword inclusion at the response body </b></td>
     </tr>
     </thead>
     <c:choose>
