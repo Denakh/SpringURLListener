@@ -29,7 +29,7 @@ public class Application {
                 CustomUser user = new CustomUser("user", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", UserRole.USER);
                 userService.addUser(new CustomUser("admin", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", UserRole.ADMIN));
                 userService.addUser(user);
-                listenedUrlService.addListenedUrl(new ListenedUrl(user, date, "https://www.google.com.ua", "/", "keyword", 5000));
+                listenedUrlService.addListenedUrl(new ListenedUrl(user, date, "https://www.dou.ua", "/", "keyword", 5000));
 
             }
         };

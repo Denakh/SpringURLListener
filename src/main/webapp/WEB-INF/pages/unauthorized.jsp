@@ -5,11 +5,13 @@
     <title>Spring URL Listener</title>
 </head>
 <body>
-<div align="center">
-    <h1>Access denied for ${login}!</h1>
+<h3>
+    <div align="center">
+        <h1>Access denied for ${login}!</h1>
 
-    <c:url value="/logout" var="logoutUrl" />
-    <p>Click to logout: <a href="${logoutUrl}">LOGOUT</a></p>
-</div>
+        <c:url value="/logout" var="logoutUrl"/>
+        <p>Click to logout: <a href="${logoutUrl}">LOGOUT</a></p>
+    </div>
+</h3>
 </body>
 </html>

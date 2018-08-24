@@ -5,10 +5,12 @@
     <title>Spring URL Listener</title>
 </head>
 <body>
-<div align="center">
-    <h2> ${message} </h2>
+<h3>
+    <div align="center">
+        ${message}
 
-    <h2><p><a href="/">Main menu</a></p></h2>
-</div>
+        <p><a href="/">Main menu</a></p>
+    </div>
+</h3>
 </body>
 </html>

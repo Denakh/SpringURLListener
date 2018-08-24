@@ -1,8 +1,5 @@
 package mainpackage.users;
 
-import mainpackage.users.CustomUser;
-import mainpackage.users.UserRepository;
-import mainpackage.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

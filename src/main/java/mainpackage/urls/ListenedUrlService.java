@@ -1,7 +1,6 @@
 package mainpackage.urls;
 
 import mainpackage.users.CustomUser;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

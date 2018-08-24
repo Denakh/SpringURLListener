@@ -34,8 +34,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory
-            (DataSource dataSource, JpaVendorAdapter jpaVendeorAdapter)
-    {
+            (DataSource dataSource, JpaVendorAdapter jpaVendeorAdapter) {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setJpaVendorAdapter(jpaVendeorAdapter);
@@ -45,7 +44,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
     }
 
@@ -69,7 +68,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl();
     }
 

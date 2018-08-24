@@ -1,7 +1,6 @@
 package mainpackage.listeningresults;
 
 import mainpackage.urls.ListenedUrl;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

@@ -5,13 +5,14 @@
     <title>Spring URL Listener</title>
 </head>
 <body>
+<h3>
     <div align="center">
-        <c:url value="/j_spring_security_check" var="loginUrl" />
+        <c:url value="/j_spring_security_check" var="loginUrl"/>
 
         <form action="${loginUrl}" method="POST">
             Login:<br/><input type="text" name="j_login"><br/>
             Password:<br/><input type="password" name="j_password"><br/>
-            <input type="submit" />
+            <input type="submit"/>
 
             <p><a href="/register">Register new user</a></p>
 
@@ -24,5 +25,6 @@
             </c:if>
         </form>
     </div>
+</h3>
 </body>
 </html>

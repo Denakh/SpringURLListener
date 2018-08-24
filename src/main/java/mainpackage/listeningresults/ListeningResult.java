@@ -1,7 +1,7 @@
 package mainpackage.listeningresults;
 
 import mainpackage.urls.ListenedUrl;
-import mainpackage.users.CustomUser;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,7 +23,10 @@ public class ListeningResult {
     private long respTime;
     private int respCode;
     private long contentLength;
+
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean keywordInclusion;
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean respTimeExcess;
 
     public ListeningResult() {
@@ -102,6 +105,5 @@ public class ListeningResult {
     public void setRespTimeExcess(boolean respTimeExcess) {
         this.respTimeExcess = respTimeExcess;
     }
-
 }
 

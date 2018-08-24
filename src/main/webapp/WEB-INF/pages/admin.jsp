@@ -6,10 +6,10 @@
 </head>
 <body>
 <div align="center">
-    <h1>Secret page for admins only!</h1>
+    <h2>Page for admins only!</h2>
 
-    <c:url value="/logout" var="logoutUrl" />
-    <p>Click to logout: <a href="${logoutUrl}">LOGOUT</a></p>
+    <c:url value="/logout" var="logoutUrl"/>
+    <h3><p>Click to logout: <a href="${logoutUrl}">LOGOUT</a></p></h3>
 </div>
 </body>
 </html>

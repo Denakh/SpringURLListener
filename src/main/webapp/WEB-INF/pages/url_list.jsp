@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h2> Executed URL list </h2>
+<h3> Executed URL list </h3>
 <form action="/get_results" method="POST">
     <table border="1">
         <thead>
@@ -17,7 +17,7 @@
             <td><b> URI </b></td>
             <td><b> Entry date </b></td>
             <td><b> Keyword for searching </b></td>
-            <td><b> Limit response time </b></td>
+            <td><b> Response time limit, ms </b></td>
         </tr>
         </thead>
         <c:choose>
@@ -46,7 +46,7 @@
     </table>
 </form>
 
-<h2><p><a href="/">Main menu</a></p></h2>
+<h3><p><a href="/">Main menu</a></p></h3>
 
 </body>
 </html>

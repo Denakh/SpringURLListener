@@ -4,17 +4,12 @@ import mainpackage.listeningresults.ListeningResult;
 import mainpackage.listeningresults.ListeningResultService;
 import mainpackage.urls.ListenedUrl;
 import mainpackage.urls.ListenedUrlService;
-import mainpackage.users.CustomUser;
-import mainpackage.users.UserRole;
-import mainpackage.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -44,14 +39,14 @@ public class SchedulerService {
                 int respCode = responseEntity.getStatusCode().value();
                 long contentLength = hh.getContentLength();
                 boolean keywordInclusion = false;
-                String respBody = "No response body";
+                String respBody;
                 if (responseEntity.hasBody()) {
                     respBody = responseEntity.getBody();
                     if (respBody.indexOf(listenedUrl.getKeyword()) > -1) keywordInclusion = true;
                 }
                 boolean respTimeExcess = respTime > listenedUrl.getLimitedTime() ? true : false;
                 ListeningResult listeningResult = new ListeningResult(listenedUrl, dateStart, respTime, respCode, contentLength,
-                keywordInclusion, respTimeExcess);
+                        keywordInclusion, respTimeExcess);
                 listeningResultService.addListeningResult(listeningResult);
             }
         }

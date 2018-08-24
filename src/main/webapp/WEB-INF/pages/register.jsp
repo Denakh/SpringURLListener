@@ -5,20 +5,22 @@
     <title>Spring URL Listener</title>
 </head>
 <body>
-<div align="center">
-    <c:url value="/newuser" var="regUrl" />
+<h3>
+    <div align="center">
+        <c:url value="/newuser" var="regUrl"/>
 
-    <form action="${regUrl}" method="POST">
-        Login:<br/><input type="text" name="login"><br/>
-        Password:<br/><input type="password" name="password"><br/>
-        E-mail:<br/><input type="text" name="email"><br/>
-        Phone:<br/><input type="text" name="phone"><br/>
-        <input type="submit" />
+        <form action="${regUrl}" method="POST">
+            Login:<br/><input type="text" name="login"><br/>
+            Password:<br/><input type="password" name="password"><br/>
+            E-mail:<br/><input type="text" name="email"><br/>
+            Phone:<br/><input type="text" name="phone"><br/>
+            <input type="submit"/>
 
-        <c:if test="${exists ne null}">
-            <p>User already exists!</p>
-        </c:if>
-    </form>
-</div>
+            <c:if test="${exists ne null}">
+                <p>User already exists!</p>
+            </c:if>
+        </form>
+    </div>
+</h3>
 </body>
 </html>

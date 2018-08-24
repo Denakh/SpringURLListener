@@ -7,19 +7,14 @@ import mainpackage.users.CustomUser;
 import mainpackage.users.UserRole;
 import mainpackage.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -132,44 +127,7 @@ public class MyController {
         listenedUrlService.addListenedUrl(new ListenedUrl(user, new Date(), server, uri, inkeyword, limtime));
         this.modelAddAttForURLList(user, model);
         return "/url_list";
-
-        //return this.messageStr("URL adding is successful", model);
-        /*
-        ResponseEntity<String> responseEntity = this.get(server, uri);
-
-        String str = responseEntity.toString();
-
-        HttpHeaders hh = responseEntity.getHeaders();
-
-        responseEntity.getStatusCode().value();
-
-
-        model.addAttribute("result1", server);
-        model.addAttribute("result2", str);
-        /*
-        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String login = user.getUsername();
-
-        CustomUser dbUser = userService.getUserByLogin(login);
-
-        model.addAttribute("login", login);
-        model.addAttribute("roles", user.getAuthorities());
-        model.addAttribute("email", dbUser.getEmail());
-        model.addAttribute("phone", dbUser.getPhone());
-*/
-        //return "result";
     }
-/*
-    private ResponseEntity<String> get(String server, String uri) {
-        HttpHeaders headers = new HttpHeaders();
-        //headers.add("Content-Type", "application/json");
-        headers.add("Accept", "text/*");
-        RestTemplate rest = new RestTemplate();
-        HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
-        ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.GET, requestEntity, String.class);
-        return responseEntity;
-    }
-*/
 
     @RequestMapping("/get_results")
     public String getListeningResults(@RequestParam(defaultValue = "0") String dellist,
@@ -220,7 +178,6 @@ public class MyController {
     private void modelAddAttForResultsList(ListenedUrl listenedUrl, Model model) {
         model.addAttribute("url", listenedUrl.getServer() + listenedUrl.getUri());
         model.addAttribute("exeResultsList", listeningResultService.getAllResultsByURL(listenedUrl));
-        //model.addAttribute("respBody", this.get(listenedUrl.getServer(), listenedUrl.getUri()));
     }
 
     private String messageStr(String message, Model model) {
@@ -233,15 +190,5 @@ public class MyController {
         String login = user.getUsername();
         return userService.getUserByLogin(login);
     }
-/*
-    private ResponseEntity<String> get(String server, String uri) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Accept", "text/*");
-        RestTemplate rest = new RestTemplate();
-        HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
-        ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.GET, requestEntity, String.class);
-        return responseEntity;
-    }
-*/
 
 }

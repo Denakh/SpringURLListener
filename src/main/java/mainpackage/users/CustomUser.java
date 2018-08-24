@@ -38,7 +38,8 @@ public class CustomUser {
         this.phone = phone;
     }
 
-    public CustomUser() {}
+    public CustomUser() {
+    }
 
     public String getLogin() {
         return login;
