@@ -2,7 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <title>SpringURLListener</title>
+    <title>Spring URL Listener</title>
 </head>
 <body>
     <div align="center">
@@ -19,9 +19,12 @@
         </form>
 
         <form action="/url_execute" method="POST">
-            Enter URL:<input type="text" name="inurl">
+            Enter URL for listening:<input type="text" name="inurl">
             <input type="submit"/>
         </form>
+
+        <br/>
+        <p><a href="/results">URL listening list and results</a></p>
 
         <c:url value="/logout" var="logoutUrl" />
         <p>Click to logout: <a href="${logoutUrl}">LOGOUT</a></p>

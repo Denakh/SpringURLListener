@@ -2,7 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <title>SpringURLListener</title>
+    <title>Spring URL Listener</title>
 </head>
 <body>
 <div align="center">
