@@ -25,41 +25,35 @@ import java.util.List;
 public class SchedulerService {
 
     @Autowired
-    private UserService userService;
-    @Autowired
     private ListenedUrlService listenedUrlService;
     @Autowired
     private ListeningResultService listeningResultService;
 
     @Scheduled(initialDelayString = "${scheduler.delay}", fixedDelayString = "${scheduler.delay}")
-    public void doWork() {
-
-        //CustomUser user = this.getCurrentUser();
+    public void urlsListen() {
         List<ListenedUrl> listenedUrls = listenedUrlService.getAllListenedUrls();
         if (!listenedUrls.isEmpty()) {
             for (ListenedUrl listenedUrl : listenedUrls) {
-                Date date = new Date();
                 String server = listenedUrl.getServer();
                 String uri = listenedUrl.getUri();
+                Date date = new Date();
                 ResponseEntity<String> responseEntity = this.get(server, uri);
                 HttpHeaders hh = responseEntity.getHeaders();
                 long respTime = hh.getDate() - date.getTime();
                 int respCode = responseEntity.getStatusCode().value();
                 long contentLength = hh.getContentLength();
                 boolean keywordInclusion = false;
+                String respBody = "No response body";
+                if (responseEntity.hasBody()) {
+                    respBody = responseEntity.getBody();
+                    if (respBody.indexOf(listenedUrl.getKeyword()) > -1) keywordInclusion = true;
+                }
                 boolean respTimeExcess = respTime > listenedUrl.getLimitedTime() ? true : false;
                 ListeningResult listeningResult = new ListeningResult(listenedUrl, date, respTime, respCode, contentLength,
                 keywordInclusion, respTimeExcess);
                 listeningResultService.addListeningResult(listeningResult);
             }
         }
-     /*
-        try {
-            TimeUnit.SECONDS.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-     */
     }
 
     private ResponseEntity<String> get(String server, String uri) {
@@ -70,12 +64,6 @@ public class SchedulerService {
         HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
         ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.GET, requestEntity, String.class);
         return responseEntity;
-    }
-
-    private CustomUser getCurrentUser() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String login = user.getUsername();
-        return userService.getUserByLogin(login);
     }
 
 }

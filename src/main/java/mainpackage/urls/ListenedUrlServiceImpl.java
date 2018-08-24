@@ -37,9 +37,7 @@ public class ListenedUrlServiceImpl implements ListenedUrlService {
     }
 
     @Override
-    @Transactional
-    public ListenedUrl findLastEntry(CustomUser user) {
-        return listenedUrlRepository.findLastEntry(user);
+    public List<ListenedUrl> getAllURLsByUser(CustomUser user) {
+        return listenedUrlRepository.getAllURLsByUser(user);
     }
-
 }

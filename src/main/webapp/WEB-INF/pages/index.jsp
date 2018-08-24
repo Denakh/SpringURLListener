@@ -18,8 +18,13 @@
             <input type="submit" value="Update" />
         </form>
 
+        private String keyword;
+        private long limitedTime;
+
         <form action="/url_execute" method="POST">
             Enter URL for listening:<input type="text" name="inurl">
+            Enter keyword for searching in response body:<input type="text" name="inkeyword">
+            Enter controlled response limit time:<input type="text" name="inlimtime">
             <input type="submit"/>
         </form>
 

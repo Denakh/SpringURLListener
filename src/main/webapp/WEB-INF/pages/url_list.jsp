@@ -7,7 +7,7 @@
 <body>
 
 <h2> Executed URL list </h2>
-<form action="/URLs_delete" method="POST">
+<form action="/get_results" method="POST">
     <table border="1">
         <thead>
         <tr>

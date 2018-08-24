@@ -1,5 +1,7 @@
 package mainpackage;
 
+import mainpackage.urls.ListenedUrl;
+import mainpackage.urls.ListenedUrlService;
 import mainpackage.users.CustomUser;
 import mainpackage.users.UserRole;
 import mainpackage.users.UserService;
@@ -18,10 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
+
 @Controller
 public class MyController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ListenedUrlService listenedUrlService;
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -91,17 +97,32 @@ public class MyController {
 
     @RequestMapping("/url_execute")
     public String urlExecute(@RequestParam(defaultValue = "0") String inurl,
+                             @RequestParam(defaultValue = "-") String inkeyword,
+                             @RequestParam(defaultValue = "0") String inlimtime,
                              Model model)
     {
-        if (inurl.equals("0")) return this.errorEmptyStr(model);
+        if (inurl.equals("0") || inlimtime.equals("0")) return this.messageStr("Error in URL. Try again", model);
+        long limtime;
+        try {
+            limtime = Long.parseLong(inlimtime);
+        } catch (NumberFormatException e) {
+            String errorStr = "Number format error for response limit time. Try again";
+            return this.messageStr(errorStr, model);
+        }
         String[] allStrAr = inurl.split("//");
-        if (allStrAr.length < 2) return this.errorEmptyStr(model);
+        if (allStrAr.length < 2) return this.messageStr("Error in URL. Try again", model);
         String[] strAr;
         if (!allStrAr[1].isEmpty()) strAr = allStrAr[1].split("/", 2);
-        else return this.errorEmptyStr(model);
+        else return this.messageStr("Error in URL. Try again", model);
         String server = allStrAr[0] + "//" + strAr[0];
         String uri = "/";
         if (strAr.length == 2) uri = uri+strAr[1];
+        CustomUser user = this.getCurrentUser();
+        listenedUrlService.addListenedUrl(new ListenedUrl(user, new Date(), server, uri, inkeyword, limtime));
+        this.modelAddAttForURLList(user, model);
+        return "/url_list";
+
+        //return this.messageStr("URL adding is successful", model);
         /*
         ResponseEntity<String> responseEntity = this.get(server, uri);
 
@@ -125,7 +146,7 @@ public class MyController {
         model.addAttribute("email", dbUser.getEmail());
         model.addAttribute("phone", dbUser.getPhone());
 */
-        return "result";
+        //return "result";
     }
 /*
     private ResponseEntity<String> get(String server, String uri) {
@@ -139,10 +160,19 @@ public class MyController {
     }
 */
 
-    private String errorEmptyStr(Model model) {
-        String errorStr = "Error in URL. Try again";
-        model.addAttribute("error_message", errorStr);
-        return "/input_error";
+    private void modelAddAttForURLList(CustomUser user, Model model) {
+        model.addAttribute("exeURLList", listenedUrlService.getAllURLsByUser(user));
+    }
+
+    private String messageStr(String message, Model model) {
+        model.addAttribute("message", message);
+        return "/message";
+    }
+
+    private CustomUser getCurrentUser() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String login = user.getUsername();
+        return userService.getUserByLogin(login);
     }
 
 

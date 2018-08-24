@@ -15,6 +15,5 @@ public interface ListenedUrlService {
 
     List<ListenedUrl> getAllListenedUrls();
 
-    ListenedUrl findLastEntry(CustomUser user);
-
+    List<ListenedUrl> getAllURLsByUser(CustomUser user);
 }
