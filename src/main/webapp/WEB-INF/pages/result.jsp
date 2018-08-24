@@ -7,16 +7,8 @@
 </head>
 <body>
 
-@Temporal(value = TemporalType.TIMESTAMP)
-private Date date;
-
-private long respTime;
-private int respCode;
-private long contentLength;
-private boolean keywordInclusion;
-private boolean respTimeExcess;
-
 <h2> Listening results for URL : ${url} </h2>
+
     <table border="1">
         <thead>
         <tr>
@@ -36,20 +28,20 @@ private boolean respTimeExcess;
                         <td>${exeResult.respCode}</td>
                         <td>${exeResult.respTime}</td>
                         <td>
-                            <c:if test="${respTimeExcess = true}">
-                                <b style="color: crimson"> Yes </b>
+                            <c:if test="${exeResult.respTimeExcess = true}">
+                                <b style="color: crimson"> Yes ${exeResult.respTimeExcess} </b>
                             </c:if>
-                            <c:if test="${respTimeExcess = false}">
-                                <b style="color: blue"> No </b>
+                            <c:if test="${exeResult.respTimeExcess = false}">
+                                No ${exeResult.respTimeExcess}
                             </c:if>
                         </td>
                         <td>${exeResult.contentLength}</td>
                         <td>
-                            <c:if test="${keywordInclusion = true}">
-                                <b style="color: blue"> Yes </b>
+                            <c:if test="${exeResult.keywordInclusion = true}">
+                                <b style="color: blue"> Yes ${exeResult.keywordInclusion} </b>
                             </c:if>
-                            <c:if test="${keywordInclusion = false}">
-                                <b style="color: #00ff3c"> No </b>
+                            <c:if test="${exeResult.keywordInclusion = false}">
+                                No ${exeResult.keywordInclusion}
                             </c:if>
                         </td>
                     </tr>
@@ -64,6 +56,8 @@ private boolean respTimeExcess;
     </table>
 
 <h2><p><a href="/">Main menu</a></p></h2>
+
+<h2><p><a href="/results">URL listening list and results</a></p></h2>
 
 </body>
 </html>

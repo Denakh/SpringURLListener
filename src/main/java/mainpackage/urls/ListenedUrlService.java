@@ -16,4 +16,6 @@ public interface ListenedUrlService {
     List<ListenedUrl> getAllListenedUrls();
 
     List<ListenedUrl> getAllURLsByUser(CustomUser user);
+
+    public ListenedUrl getURLById(long id);
 }

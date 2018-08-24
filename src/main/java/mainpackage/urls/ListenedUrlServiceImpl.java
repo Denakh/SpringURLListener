@@ -40,4 +40,9 @@ public class ListenedUrlServiceImpl implements ListenedUrlService {
     public List<ListenedUrl> getAllURLsByUser(CustomUser user) {
         return listenedUrlRepository.getAllURLsByUser(user);
     }
+
+    @Override
+    public ListenedUrl getURLById(long id) {
+        return listenedUrlRepository.findOne(id);
+    }
 }

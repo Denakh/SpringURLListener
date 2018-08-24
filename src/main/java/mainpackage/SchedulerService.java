@@ -36,10 +36,11 @@ public class SchedulerService {
             for (ListenedUrl listenedUrl : listenedUrls) {
                 String server = listenedUrl.getServer();
                 String uri = listenedUrl.getUri();
-                Date date = new Date();
+                Date dateStart = new Date();
                 ResponseEntity<String> responseEntity = this.get(server, uri);
+                Date dateFinish = new Date();
                 HttpHeaders hh = responseEntity.getHeaders();
-                long respTime = hh.getDate() - date.getTime();
+                long respTime = dateFinish.getTime() - dateStart.getTime();
                 int respCode = responseEntity.getStatusCode().value();
                 long contentLength = hh.getContentLength();
                 boolean keywordInclusion = false;
@@ -49,7 +50,7 @@ public class SchedulerService {
                     if (respBody.indexOf(listenedUrl.getKeyword()) > -1) keywordInclusion = true;
                 }
                 boolean respTimeExcess = respTime > listenedUrl.getLimitedTime() ? true : false;
-                ListeningResult listeningResult = new ListeningResult(listenedUrl, date, respTime, respCode, contentLength,
+                ListeningResult listeningResult = new ListeningResult(listenedUrl, dateStart, respTime, respCode, contentLength,
                 keywordInclusion, respTimeExcess);
                 listeningResultService.addListeningResult(listeningResult);
             }

@@ -34,7 +34,7 @@
                     </tr>
                 </c:forEach>
                 <tr>
-                    <td><input type="submit"/></td>
+                    <td colspan="2"><input type="submit"/></td>
                 </tr>
             </c:when>
             <c:otherwise>

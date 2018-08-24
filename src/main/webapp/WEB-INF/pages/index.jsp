@@ -17,14 +17,11 @@
             Phone:<br/><input type="text" name="phone" value="${phone}" /><br/>
             <input type="submit" value="Update" />
         </form>
-
-        private String keyword;
-        private long limitedTime;
-
+    </div>
         <form action="/url_execute" method="POST">
-            Enter URL for listening:<input type="text" name="inurl">
-            Enter keyword for searching in response body:<input type="text" name="inkeyword">
-            Enter controlled response limit time:<input type="text" name="inlimtime">
+            <br/>Enter URL for listening:<input type="text" name="inurl"><br/>
+            <br/>Enter keyword for searching in response body:<input type="text" name="inkeyword"><br/>
+            <br/>Enter controlled response limit time, ms:<input type="text" name="inlimtime"><br/>
             <input type="submit"/>
         </form>
 
@@ -33,6 +30,6 @@
 
         <c:url value="/logout" var="logoutUrl" />
         <p>Click to logout: <a href="${logoutUrl}">LOGOUT</a></p>
-    </div>
+
 </body>
 </html>

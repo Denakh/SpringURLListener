@@ -1,8 +1,11 @@
 package mainpackage.listeningresults;
 
+import mainpackage.urls.ListenedUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ListeningResultServiceImpl implements ListeningResultService {
@@ -27,4 +30,8 @@ public class ListeningResultServiceImpl implements ListeningResultService {
         listeningResultRepository.delete(id);
     }
 
+    @Override
+    public List<ListeningResult> getAllResultsByURL(ListenedUrl url) {
+        return listeningResultRepository.getAllResultsByURL(url);
+    }
 }

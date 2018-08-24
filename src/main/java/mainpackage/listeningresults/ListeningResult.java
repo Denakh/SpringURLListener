@@ -102,5 +102,6 @@ public class ListeningResult {
     public void setRespTimeExcess(boolean respTimeExcess) {
         this.respTimeExcess = respTimeExcess;
     }
+
 }
 
